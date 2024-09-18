@@ -38,17 +38,12 @@ function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <Tabs.Navigator>
-        {/* <Tabs.Screen
-          listeners={{
-            tabPress: () =>
-              setUrl(
-                'https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1',
-              ),
-          }}
-          name="Gatti"
-          component={Gatti}>          
-        </Tabs.Screen> */}
-        <Tabs.Screen name="Cani" component={Cani} listeners={{tabPress: ()=> console.log("ciao")}} />
+        <Tabs.Screen name="Gatti" component={Gatti} />
+        <Tabs.Screen
+          name="Cani"
+          component={Cani}
+          listeners={{tabPress: () => console.log('ciao')}}
+        />
       </Tabs.Navigator>
     </NavigationContainer>
   );
