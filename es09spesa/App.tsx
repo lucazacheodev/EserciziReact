@@ -23,7 +23,7 @@ function App(): React.JSX.Element {
   function deleteFromList(indice: number) {
     // metodo splice non si aggiorna subito
     // lista.splice(indice, 1);       
-
+    // delete lista[indice];
     const newList = lista.filter((ingrediente, i) => i !== indice);
     setLista(newList);
   }

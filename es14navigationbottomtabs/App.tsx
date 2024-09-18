@@ -9,12 +9,10 @@ type TabsParamList = {
   Gatti: undefined;
   Cani: undefined;
 };
-const Tabs = createBottomTabNavigator<TabsParamList>();
 
 function App(): React.JSX.Element {
-  const [urlGatto, setUrlGatto] = useState('');
-  const url =
-    'https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1';
+  const [url, setUrl] = useState('');
+  const [uri, setUri] = useState('');
 
   async function getData() {
     try {
@@ -23,25 +21,34 @@ function App(): React.JSX.Element {
         throw new Error(`Response status: ${response.status}`);
       }
       const json: Result[] = await response.json();
-      console.log(json[0].url);
-      setUrlGatto(json[0].url);
+      setUri(json[0].url);
     } catch (error: any) {
-      console.error(`Error fetching data: ${error.message}`);
+      console.error(error.message);
     }
   }
 
   useEffect(() => {
-    getData();
-  }, []);
+    if (url) {
+      getData();
+    }
+  }, [url]);
+
+  const Tabs = createBottomTabNavigator<TabsParamList>();
 
   return (
     <NavigationContainer>
       <Tabs.Navigator>
-        <Tabs.Screen name="Gatti">
-          {() => <Gatti urlGatto={urlGatto} />}{' '}
-          {/* Passiamo urlGatto come prop */}
-        </Tabs.Screen>
-        <Tabs.Screen name="Cani" component={Cani} />
+        {/* <Tabs.Screen
+          listeners={{
+            tabPress: () =>
+              setUrl(
+                'https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1',
+              ),
+          }}
+          name="Gatti"
+          component={Gatti}>          
+        </Tabs.Screen> */}
+        <Tabs.Screen name="Cani" component={Cani} listeners={{tabPress: ()=> console.log("ciao")}} />
       </Tabs.Navigator>
     </NavigationContainer>
   );

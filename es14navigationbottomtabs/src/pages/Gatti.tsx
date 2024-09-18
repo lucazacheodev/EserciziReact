@@ -1,15 +1,21 @@
-import React from 'react';
-import {View, Text, Image} from 'react-native';
+import React, { useState } from 'react';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 
-interface GattiProps {
-  urlGatto: string;
-}
+type GattiProps = {
+  uri:string;
+};
 
-const Gatti: React.FC<GattiProps> = ({urlGatto}) => {
+const urlGatti = "https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1"
+const Gatti = ({ uri }: GattiProps) => {
   return (
     <View>
       <Text>Tab Gatti</Text>
-      {urlGatto ? <Image source={{uri: urlGatto}} /> : <Text>Loading...</Text>}
+      <TouchableOpacity onPress={() => {}}>
+        <View>
+          <Text>Press me</Text>          
+        </View>        
+      </TouchableOpacity>   
+      <Image source={{uri:uri}}></Image>   
     </View>
   );
 };
