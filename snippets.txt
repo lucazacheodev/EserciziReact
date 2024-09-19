@@ -1,0 +1,199 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:	
+	"MS UseState": {
+		"prefix": "useState",
+		"body": "const [ ${1}, set${1/(.*)/${1:/capitalize}/} ] = useState($2);",
+	},
+	"MS UseEffect": {
+		"prefix": "useEffect",
+		"body": [
+			"useEffect(() => {",
+			"$0",
+			"}, [${1:dependencies}]);"
+		],
+	},
+	"MS Fetch Base": {
+		"prefix": "fecthBase",
+		"body": [
+			"const [data, setData] = useState<$1>([$2]);",
+			"const url = \"$3\";",
+			"const getData = () => {",
+			"  fetch(url)",
+			"    .then((response) => response.json())",
+			"    .then((data) => {",
+			"      setData(data);",
+			"    });",
+			"};"
+		],
+		"description": "React useState hook with a fetch function"
+	},
+	"MS Fetch Async": {
+		"prefix": "fetchAsync",
+		"body": [
+			"async function getData() {",
+			"  const url = \"${1:https://example.org/products.json}\";",
+			"  try {",
+			"    const response = await fetch(url);",
+			"    if (!response.ok) {",
+			"      throw new Error(`Response status: ${response.status}`);",
+			"    }",
+			"",
+			"    const json = await response.json();",
+			"    $0",
+			"  } catch (error:any) {",
+			"    console.error(error.message);",
+			"  }",
+			"}"
+		],
+	},
+	"MS Component": {
+		"prefix": "component",
+		"body": [
+			"import React from 'react';",
+			"import { View, Text } from 'react-native';",
+			"",
+			"const $1 = () => {",
+			"  return (",
+			"    <View>",
+			"      <Text>$2</Text>",
+			"    </View>",
+			"  );",
+			"};",
+			"",
+			"export default $1;"
+		],
+	},
+	"MS ComponentProps": {
+		"prefix": "componentProps",
+		"body": [
+			"import React from 'react';",
+			"import { View, Text, TouchableOpacity } from 'react-native';",
+			"",
+			"interface Props {",
+			"  name: string;",
+			"  onPress: () => void;",
+			"}",
+			"",
+			"const $1: React.FC<Props> = ({ name, onPress }) => {",
+			"  return (",
+			"    <View>",
+			"      <Text>{name}</Text>",
+			"      <TouchableOpacity onPress={onPress}>",
+			"        <Text>Button Name</Text>",
+			"      </TouchableOpacity>",
+			"    </View>",
+			"  );",
+			"};",
+			"",
+			"export default $1;"
+		],
+	},
+	"MS ComponentStyle": {
+		"prefix": "componentStyle",
+		"body": [
+			"import React from 'react';",
+			"import { StyleSheet, View, Text } from 'react-native';",
+			"",
+			"const $1 = () => {",
+			"  return (",
+			"    <View style={styles.container}>",
+			"      <Text style={styles.text}></Text>",
+			"      <TouchableOpacity onPress={()=>{}} style={styles.button}>",
+			"        <Text>Button Name</Text>",
+			"      </TouchableOpacity>",
+			"    </View>",
+			"  );",
+			"};",
+			"",
+			"export default $1;",
+			"",
+			"const styles = StyleSheet.create({",
+			"  container: {",
+			"  },",
+			"  button: {",
+			"  },",
+			"  text: {",
+			"  }",
+			"});",
+		],
+	},
+	"MS ComponentPropsStyle": {
+		"prefix": "componentPropsStyle",
+		"body": [
+			"import React from 'react';",
+			"import {StyleSheet, View, Text, TouchableOpacity } from 'react-native';",
+			"",
+			"interface Props {",
+			
+			"}",
+			"",
+			"const $1: React.FC<Props> = ({}) => {",
+			"  return (",
+			"    <View style={styles.container}>",			
+			"    </View>",
+			"  );",
+			"};",
+			"",
+			"export default $1;",
+			"",
+			"const styles = StyleSheet.create({",
+			"  container: {",
+			"  },",
+			"  button: {",
+			"  },",
+			"  text: {",
+			"  }",
+			"});",
+		],
+	},
+	"MS Stylesheet": {
+		"prefix": "styles",
+		"body": [
+			"import { StyleSheet } from 'react-native';",
+			"",
+			"const styles = StyleSheet.create({",
+			"  container: {",
+			"  },",
+			"  button: {",
+			"  },",
+			"  text: {",
+			"  }",
+			"});",
+			"",
+			"export default styles;"
+		],
+	},
+	"MS TouchableOpacity": {
+		"prefix": "touchable",
+		"body": [
+			"<TouchableOpacity onPress={() => {$1}}>",
+			"  <View style={styles.${2:button}}>",
+			"    <Text>${3:Press me}</Text>",
+			"  </View>",
+			"</TouchableOpacity>"
+		],
+	},
+	"MS Flatlist": {
+		"prefix": "flatlist",
+		"body": [
+			"<FlatList",
+			"  data={${1:data}}",
+			"  keyExtractor={(item: ${2:ItemType}) => item.${3:id}}",
+			"  renderItem={({ item }) => (",
+			"    <${4:View}>",
+			"      <${5:Text}>{item.${6:text}}</${5:Text}>",
+			"    </${4:View}>",
+			"  )}",
+			"  showsVerticalScrollIndicator={false}",
+			"  contentContainerStyle={${7:styles.contentContainer}}",
+			"/>"
+		],
+		"description": "React Native FlatList with TypeScript"
+	}
+}
